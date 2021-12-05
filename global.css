@@ -2,3 +2,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.page-content {
+  height: calc(100vh - 96px);
+}
+
+.scroll-area {
+  height: calc(100vh - 96px - 51px);
+}
+
+.cover-image-wrapper {
+  width: 100%;
+}
+
+.cover-image-wrapper > span {
+  position: unset !important;
+}
+
+.cover-image-wrapper .cover-image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}

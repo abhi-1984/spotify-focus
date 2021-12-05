@@ -1,27 +1,59 @@
+import Image from "next/image";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { currentTrackState } from "../atoms/songAtom";
+import useSpotify from "../hooks/useSpotify";
 import { NextIcon, PlayIcon, PreviousIcon } from "./Icons";
 
 export default function Player() {
-  const iconWrapperClass =
-    "w-8 h-8 flex items-center justify-center cursor-pointer";
+  const [currentTrack, setCurrentTrack] = useRecoilState(currentTrackState);
+  const spotifyAPI = useSpotify();
+
+  console.log("current track in player ", currentTrack);
+
+  useEffect(() => {
+    spotifyAPI.getMyDevices().then(
+      function (data) {
+        let availableDevices = data.body.devices;
+        console.log(availableDevices);
+      },
+      function (err) {
+        console.log("Something went wrong!", err);
+      }
+    );
+  }, [spotifyAPI]);
 
   return (
-    <footer className="w-[320px] fixed right-10 bottom-0 p-3 rounded-t-md bg-white shadow-subtle flex items-center justify-between">
-      <div className="space-x-2 flex items-center">
-        <div className="w-8 h-8 bg-gray-100 rounded-full"></div>
-        <p>Origin</p>
-      </div>
+    <section className="relative w-full flex items-center justify-center">
+      <aside className="sticky top-[136px] w-full">
+        <div className="cover-image-wrapper max-w-[70%]">
+          <Image
+            layout="fill"
+            className="rounded-lg cover-image overflow-hidden"
+            quality={100}
+            src={currentTrack.album.images[0].url}
+            alt={currentTrack.name}
+          />
+        </div>
+        <div>
+          <p className="font-bold">{currentTrack.name}</p>
+          <p className="text-sm opacity-60">
+            {currentTrack.album.artists[0].name}
+          </p>
+        </div>
 
-      <div className="flex items-center space-x-3">
-        <div className={iconWrapperClass}>
-          <PreviousIcon />
+        <div className="flex items-center space-x-4">
+          <div className="w-6 h-6 flex items-center justify-center cursor-pointer">
+            <PreviousIcon />
+          </div>
+          <div className="w-6 h-6 flex items-center justify-center cursor-pointer">
+            <PlayIcon />
+          </div>
+          <div className="w-6 h-6 flex items-center justify-center cursor-pointer">
+            <NextIcon />
+          </div>
         </div>
-        <div className={iconWrapperClass}>
-          <PlayIcon />
-        </div>
-        <div className={iconWrapperClass}>
-          <NextIcon />
-        </div>
-      </div>
-    </footer>
+      </aside>
+    </section>
   );
 }

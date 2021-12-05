@@ -10,15 +10,12 @@ const spotifyApi = new SpotifyWebApi({
 export default function useSpotify() {
   const { data } = useSession();
 
-  console.log("@@@@", data);
-
   useEffect(() => {
     if (data) {
       if (data.error === "RefreshAccessTokenError") {
         signIn();
+        console.log("active>>>", data);
       }
-
-      console.log("active>>>", data);
 
       spotifyApi.setAccessToken(data.user.accessToken);
     }

@@ -5,9 +5,12 @@ import useSpotify from "../hooks/useSpotify";
 import Nav from "../components/Nav";
 import Sidebar from "../components/Sidebar";
 import Player from "../components/Player";
+import { useRecoilState } from "recoil";
+import { currentTrackState } from "../atoms/songAtom";
 
 export default function TopTracks({ session }) {
   const spotifyApi = useSpotify();
+  const [currentTrack, setCurrentTrack] = useRecoilState(currentTrackState);
 
   const [topTracks, setTopTracks] = useState(null);
 
@@ -21,6 +24,19 @@ export default function TopTracks({ session }) {
           console.log("Something went wrong!", err);
         }
       );
+
+      if (!currentTrack) {
+        spotifyApi.getMyCurrentPlayingTrack().then(
+          function (data) {
+            if (data) {
+              setCurrentTrack(data.body?.item);
+            }
+          },
+          function (err) {
+            console.log("Something went wrong!", err);
+          }
+        );
+      }
     }
   }, [session, spotifyApi]);
 
@@ -29,19 +45,13 @@ export default function TopTracks({ session }) {
   return (
     <>
       <Nav />
-      <Sidebar />
-      <main className="">
-        <section className="max-w-[520px] w-full mx-auto mt-[96px]">
-          <div className="p-5 w-full">
-            <h1 className="text-3xl leading-none font-bold tracking-tight mb-5">
-              Top Tracks
-            </h1>
-            <div className="border-b border-solid border-black border-opacity-5" />
-          </div>
-          <Tracks songs={topTracks} />
-        </section>
+      <main className="mt-[96px] grid page-content overflow-hidden grid-cols-page gap-10 px-10 py-5">
+        <Sidebar />
+
+        <Tracks title={"Top Tracks"} songs={topTracks} />
+
+        {currentTrack && <Player />}
       </main>
-      <Player />
     </>
   );
 }

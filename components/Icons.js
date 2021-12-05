@@ -40,26 +40,12 @@ export const SearchIcon = () => {
 export const PreviousIcon = () => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="h-full w-full"
+      viewBox="0 0 20 20"
+      fill="currentColor"
     >
-      <path
-        d="M9.75 12L18.25 5.75V18.25L9.75 12Z"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M5.75 5.75V18.25"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
     </svg>
   );
 };
@@ -67,18 +53,15 @@ export const PreviousIcon = () => {
 export const PlayIcon = () => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="h-full w-full"
+      viewBox="0 0 20 20"
+      fill="currentColor"
     >
       <path
-        d="M18.25 12L5.75 5.75V18.25L18.25 12Z"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fillRule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+        clipRule="evenodd"
       />
     </svg>
   );
@@ -87,26 +70,12 @@ export const PlayIcon = () => {
 export const NextIcon = () => {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="h-full w-full"
+      viewBox="0 0 20 20"
+      fill="currentColor"
     >
-      <path
-        d="M14.25 12L5.75 5.75V18.25L14.25 12Z"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M18.25 5.75V18.25"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z" />
     </svg>
   );
 };

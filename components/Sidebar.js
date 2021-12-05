@@ -3,7 +3,7 @@ import { tabState } from "../atoms/tabItem";
 import { useRouter } from "next/router";
 
 export default function Sidebar() {
-  const tabClass = `text-lg leading-normal cursor-pointer`;
+  const tabClass = `text-xl leading-normal cursor-pointer`;
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useRecoilState(tabState);
   const tabs = [
@@ -35,22 +35,24 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed top-[106px] left-10 flex flex-col items-start justify-start space-y-6">
-      {tabs.map((tab) => {
-        return (
-          <div
-            key={tab.id}
-            className={`${tabClass} ${
-              selectedTab === tab.label
-                ? "opacity-100 font-medium"
-                : "opacity-60"
-            }`}
-            onClick={() => handleTabSelection(tab)}
-          >
-            <p>{tab.label}</p>
-          </div>
-        );
-      })}
-    </aside>
+    <section className="relative">
+      <aside className="sticky top-0 flex flex-col items-start justify-end space-y-6">
+        {tabs.map((tab) => {
+          return (
+            <div
+              key={tab.id}
+              className={`${tabClass} ${
+                selectedTab === tab.label
+                  ? "opacity-100 font-medium"
+                  : "opacity-60"
+              }`}
+              onClick={() => handleTabSelection(tab)}
+            >
+              <p>{tab.label}</p>
+            </div>
+          );
+        })}
+      </aside>
+    </section>
   );
 }
