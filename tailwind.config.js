@@ -13,7 +13,7 @@ module.exports = {
         gray: colors.trueGray,
       },
       gridTemplateColumns: {
-        page: "240px minmax(480px, 1fr) 1.5fr",
+        page: "1fr 440px",
       },
       boxShadow: {
         subtle:
